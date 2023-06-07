@@ -12,6 +12,7 @@ const cardsRouter = require('./routes/cards');
 const { auth } = require('./middlewares/auth');
 const { NotFoundError } = require('./errors/notfound');
 const { centralError } = require('./middlewares/centralError');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {
   useNewUrlParser: true,
@@ -21,6 +22,10 @@ mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {
   });
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(requestLogger);
+
 app.use(signRouter);
 app.use(auth);
 
@@ -37,6 +42,8 @@ app.use((req, res, next) => {
   };
   next();
 });
+
+app.use(errorLogger);
 
 app.use(errors());
 app.use(centralError);
