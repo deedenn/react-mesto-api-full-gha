@@ -1,0 +1,12 @@
+.auth {
+  padding: 60px 0 80px;
+  width: 100%;
+  font-family: Inter, Arial, sans-serif;
+
+}
+
+@media screen and (max-width: 685px) {
+  .auth {
+    padding: 40px 0 40px;
+  }
+}

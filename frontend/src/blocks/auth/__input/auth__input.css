@@ -1,0 +1,15 @@
+.auth__input {
+    max-width: 100%;
+    background-color: black;
+    color:#CCCCCC;
+    border: none;
+    border-bottom: 2px solid #CCCCCC;
+    margin: 0;
+    padding: 0;
+  }
+  
+  @media screen and (max-width: 685px) {
+    .auth__input {
+      max-width: 260px;
+    }
+  }

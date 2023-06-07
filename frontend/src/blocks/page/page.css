@@ -1,0 +1,8 @@
+.page {
+    max-width: 880px;
+    min-width: 320px;
+    margin: 0 auto;
+    padding-top: 45px;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
