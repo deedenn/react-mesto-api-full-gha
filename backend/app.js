@@ -29,6 +29,12 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер падает');
+  }, 0);
+});
+
 app.use(signRouter);
 app.use(auth);
 
