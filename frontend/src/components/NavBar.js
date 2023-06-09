@@ -1,11 +1,11 @@
-import { Link, useLocation } from 'react-router-dom';
+import React, { Link, useLocation } from 'react-router-dom';
 
 function NavBar({ email, onLogout }) {
   const location = useLocation();
   function handleNavToggle() {
     if (location.pathname === "/sign-in") {
       return (
-        <Link to="/sign-up" className="header__link">Регистрация</Link>
+        <Link to="/sign-up" className="header__link">Регистрация< /Link>
       )
     } else if
       (location.pathname === "/sign-up") {
