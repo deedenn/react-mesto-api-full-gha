@@ -63,7 +63,7 @@ class Auth {
 }
 
 export const auth = new Auth({
-  url: "https://auth.nomoreparties.co",
+  url: "https://mesto-backend.nomoredomains.rocks",
 });
 
 export default auth;

@@ -96,7 +96,7 @@ class Api {
 }
 
 export const api = new Api({
-    url: 'https://mesto.nomoreparties.co/v1/cohort-60',
+    url: 'https://mesto-backend.nomoredomains.rocks',
     headers: {
         authorization: '088400de-a8be-47a0-9e64-a3f51543a3fa',
         'Content-Type': 'application/json'
