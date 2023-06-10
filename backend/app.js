@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-require('dotenv').config(); 
+require('dotenv').config();
 
 const { PORT = 3000 } = process.env;
 const { errors } = require('celebrate');
@@ -15,7 +15,7 @@ const signRouter = require('./routes/sign');
 const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
 const { auth } = require('./middlewares/auth');
-const { NotFoundError } = require('./errors/notfound');
+const NotFoundError = require('./errors/notfound');
 const { centralError } = require('./middlewares/centralError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
@@ -45,13 +45,6 @@ app.use('/cards', cardsRouter);
 
 app.use('*', (req, res, next) => {
   next(new NotFoundError('Страница не найдена'));
-});
-
-app.use((req, res, next) => {
-  req.user = {
-    _id: '64610a3c8aafb5a357e830aa',
-  };
-  next();
 });
 
 app.use(errorLogger);

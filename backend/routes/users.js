@@ -7,13 +7,12 @@ const {
 
 const usersRouter = express.Router();
 const {
-  getUsers, getUser, createUser, updateUser, updateAvatar,
+  getUsers, getUser, updateUser, updateAvatar,
 } = require('../controllers/users');
 
 usersRouter.get('/', getUsers);
 usersRouter.get('/me', getInfoUser);
 usersRouter.get('/:userId', celebrate(getUserByIdValidation), getUser);
-usersRouter.post('/', createUser);
 usersRouter.patch('/me', celebrate(updateProfileValidation), updateUser);
 usersRouter.patch('/me/avatar', celebrate(updateAvatarValidation), updateAvatar);
 

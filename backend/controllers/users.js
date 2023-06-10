@@ -1,6 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/users');
+
+const { NODE_ENV, JWT_SECRET } = process.env;
 const BadRequestError = require('../errors/badrequest');
 const NotFoundError = require('../errors/notfound');
 const UnauthorizedError = require('../errors/unautorized');
@@ -58,16 +60,18 @@ const createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
   } = req.body;
-  User.create({
-    name, about, avatar, email, password,
-  });
   bcrypt
     .hash(password, 10)
     .then((hash) => User.create({
       name, about, avatar, email, password: hash,
     }))
     .then((newUser) => {
-      res.status(201).send(newUser);
+      res.status(200).send({
+        email: newUser.email,
+        name: newUser.name,
+        about: newUser.about,
+        avatar: newUser.avatar,
+      });
     })
     .catch((err) => {
       if (err.code === 11000) {
@@ -155,7 +159,13 @@ const login = (req, res, next) => {
           if (!matched) {
             return next(new UnauthorizedError('Неправильная почта или пароль'));
           }
-          const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
+          const token = jwt.sign(
+            { _id: user._id },
+            NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key',
+            {
+              expiresIn: '7d',
+            },
+          );
           return res.send({ token });
         });
     })
