@@ -13,4 +13,4 @@ IP 51.250.88.158
 
 Frontend https://mesto-express.nomoredomains.rocks
 
-Backend https://mesto-backend.nomoredomains.rocks   
+Backend https://mesto-backend.nomoredomains.rocks
