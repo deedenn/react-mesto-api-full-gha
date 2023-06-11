@@ -39,7 +39,7 @@ const getUser = (req, res, next) => {
 };
 
 const getInfoUser = (req, res, next) => {
-  User.findById({ _id: req.user.id })
+  User.findById({ _id: req.user._id })
     .then((user) => {
       if (!user) {
         throw new NotFoundError('Пользователь не найден');
@@ -91,7 +91,7 @@ const createUser = (req, res, next) => {
 };
 
 const updateUser = (req, res, next) => {
-  const owner = req.user.id;
+  const owner = req.user._id;
   const { name, about } = req.body;
 
   User.findByIdAndUpdate(
@@ -119,7 +119,7 @@ const updateUser = (req, res, next) => {
 };
 
 const updateAvatar = (req, res, next) => {
-  const owner = req.user.id;
+  const owner = req.user._id;
   const { avatar } = req.body;
 
   User.findByIdAndUpdate(
@@ -160,7 +160,7 @@ const login = (req, res, next) => {
             return next(new UnauthorizedError('Неправильная почта или пароль'));
           }
           const token = jwt.sign(
-            { _id: user.id },
+            { _id: user._id },
             NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key',
             {
               expiresIn: '7d',
