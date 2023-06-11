@@ -28,7 +28,6 @@ class Auth {
   }
 
   authorization({ email, password }) {
-    console.log(password);
     return fetch(`${this._url}/signin`, {
       method: "POST",
       headers: {
