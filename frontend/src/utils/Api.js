@@ -95,10 +95,11 @@ class Api {
 
 }
 
+
 export const api = new Api({
     url: 'https://mesto-backend.nomoredomains.rocks',
     headers: {
-        authorization: '088400de-a8be-47a0-9e64-a3f51543a3fa',
-        'Content-Type': 'application/json'
-    }
-})
+       "Content-Type": "application/json",
+       "Accept": "application/json",
+    },
+  });
