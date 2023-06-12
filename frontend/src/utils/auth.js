@@ -61,10 +61,12 @@ class Auth {
   }
 }
 
+export const auth = new Auth({
+  url: "https://mesto-backend.nomoredomains.rocks",
+});
+
 // export const auth = new Auth({
-//   url: 'http://localhost:3000',
+//   url: "https://auth.nomoreparties.co",
 // });
 
-export const auth = new Auth({
-  url: 'https://mesto-backend.nomoredomains.rocks',
-});
+export default auth;

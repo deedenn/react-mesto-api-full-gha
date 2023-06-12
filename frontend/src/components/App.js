@@ -82,12 +82,9 @@ function App() {
     auth
       .authorization({ email, password })
       .then((data) => {
-        if (data.token) {
-          localStorage.setItem("token", data.token);
-          api.setToken(data.token);
-          handleLogin();
-          navigate("/", { replace: true });
-        } 
+        if (data.token) localStorage.setItem("token", data.token);
+        handleLogin();
+        navigate("/", { replace: true });
       })
       .catch((err) => {
         handleShowInfoMessage({

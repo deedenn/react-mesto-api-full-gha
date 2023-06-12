@@ -4,13 +4,6 @@ class Api {
         this._headers = headers;
     }
 
-    setToken() {
-        this._headers = {
-            'Content-Type': 'application/json',
-            authorization: `Bearer ${localStorage.getItem("token")}`,
-        }
-    }
-
     _checkResponse(response) {
         if (response.ok) {
             return response.json();
@@ -23,10 +16,7 @@ class Api {
     // получение информации о пользователе
     getUserInfo() {
         return fetch(`${this._url}/users/me`, {
-            headers: {
-                "Content-Type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("token")}`,
-              },
+            headers: this._headers
         })
             .then(this._checkResponse);
     }
@@ -35,10 +25,7 @@ class Api {
 
     getInitialCards() {
         return fetch(`${this._url}/cards`, {
-            headers: {
-                "Content-Type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("token")}`,
-              },
+            headers: this._headers
         })
             .then(this._checkResponse);
     }
@@ -47,10 +34,7 @@ class Api {
     editProfileInfo(data) {
         return fetch(`${this._url}/users/me`, {
             method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("token")}`,
-              },
+            headers: this._headers,
             body: JSON.stringify({
                 name: data.name,
                 about: data.about,
@@ -64,10 +48,7 @@ class Api {
     changeAvatar(data) {
         return fetch(`${this._url}/users/me/avatar`, {
             method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("token")}`,
-              },
+            headers: this._headers,
             body: JSON.stringify(data)
         })
             .then(this._checkResponse);
@@ -78,10 +59,7 @@ class Api {
     addNewCard(data) {
         return fetch(`${this._url}/cards`, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("token")}`,
-              },
+            headers: this._headers,
             body: JSON.stringify(data)
         })
             .then(this._checkResponse);
@@ -92,10 +70,7 @@ class Api {
     deleteCard(id) {
         return fetch(`${this._url}/cards/${id}`, {
             method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("token")}`,
-              },
+            headers: this._headers
         })
             .then(this._checkResponse);
     }
@@ -106,19 +81,13 @@ class Api {
         if (isLiked) {
             return fetch(`${this._url}/cards/${id}/likes`, {
                 method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                    authorization: `Bearer ${localStorage.getItem("token")}`,
-                  },
+                headers: this._headers
             })
                 .then(this._checkResponse);
         } else {
             return fetch(`${this._url}/cards/${id}/likes`, {
                 method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    authorization: `Bearer ${localStorage.getItem("token")}`,
-                  },
+                headers: this._headers
             })
                 .then(this._checkResponse);
         }
@@ -126,19 +95,18 @@ class Api {
 
 }
 
-
-// export const api = new Api({
-//     url: 'http://localhost:3000',
-//     headers: {
-//         "Content-Type": "application/json",
-//         "Accept": "application/json",
-//     },
-// });
-
 export const api = new Api({
     url: 'https://mesto-backend.nomoredomains.rocks',
     headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
+       "Content-Type": "application/json",
+       "Accept": "application/json",
     },
-});
+  });
+
+// export const api = new Api({
+//     url: 'https://mesto.nomoreparties.co/v1/cohort-60',
+//     headers: {
+//         authorization: '088400de-a8be-47a0-9e64-a3f51543a3fa',
+//         'Content-Type': 'application/json'
+//     }
+// })
