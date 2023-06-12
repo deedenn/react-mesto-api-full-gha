@@ -5,12 +5,12 @@ require('dotenv').config();
 
 const { PORT = 3000 } = process.env;
 const { errors } = require('celebrate');
-const cors = require('cors');
+const cors = require('./middlewares/cors');
 
 const app = express();
 
 const signRouter = require('./routes/sign');
-const router = require('./routes');
+const Router = require('./routes');
 const { auth } = require('./middlewares/auth');
 const NotFoundError = require('./errors/notfound');
 const { centralError } = require('./middlewares/centralError');
@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
-app.use(cors());
+app.use(cors);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
