@@ -160,7 +160,7 @@ const login = (req, res, next) => {
             return next(new UnauthorizedError('Неправильная почта или пароль'));
           }
           const token = jwt.sign(
-            { _id: user.id },
+            { _id: user._id },
             NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key',
             {
               expiresIn: '7d',
