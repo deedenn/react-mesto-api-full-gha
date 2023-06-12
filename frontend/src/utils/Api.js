@@ -4,6 +4,11 @@ class Api {
         this._headers = headers;
     }
 
+    setToken() {
+        this._token = localStorage.getItem('token');
+        this._headers.authorization = `Bearer ${this._token}`;
+    }
+
     _checkResponse(response) {
         if (response.ok) {
             return response.json();
@@ -16,11 +21,7 @@ class Api {
     // получение информации о пользователе
     getUserInfo() {
         return fetch(`${this._url}/users/me`, {
-            headers:  {
-                Accept: "application/json",
-                authorization: `Bearer ${localStorage.getItem("token")}`,
-                "Content-Type": "application/json",
-              },
+            headers: this._headers,
         })
             .then(this._checkResponse);
     }
@@ -29,11 +30,7 @@ class Api {
 
     getInitialCards() {
         return fetch(`${this._url}/cards`, {
-            headers:  {
-                Accept: "application/json",
-                authorization: `Bearer ${localStorage.getItem("token")}`,
-                "Content-Type": "application/json",
-              },
+            headers: this._headers,
         })
             .then(this._checkResponse);
     }
@@ -42,11 +39,7 @@ class Api {
     editProfileInfo(data) {
         return fetch(`${this._url}/users/me`, {
             method: "PATCH",
-            headers:  {
-                Accept: "application/json",
-                authorization: `Bearer ${localStorage.getItem("token")}`,
-                "Content-Type": "application/json",
-              },
+            headers: this._headers,
             body: JSON.stringify({
                 name: data.name,
                 about: data.about,
@@ -60,11 +53,7 @@ class Api {
     changeAvatar(data) {
         return fetch(`${this._url}/users/me/avatar`, {
             method: "PATCH",
-            headers:  {
-                Accept: "application/json",
-                authorization: `Bearer ${localStorage.getItem("token")}`,
-                "Content-Type": "application/json",
-              },
+            headers: this._headers,
             body: JSON.stringify(data)
         })
             .then(this._checkResponse);
@@ -75,11 +64,7 @@ class Api {
     addNewCard(data) {
         return fetch(`${this._url}/cards`, {
             method: "POST",
-            headers:  {
-                Accept: "application/json",
-                authorization: `Bearer ${localStorage.getItem("token")}`,
-                "Content-Type": "application/json",
-              },
+            headers: this._headers,
             body: JSON.stringify(data)
         })
             .then(this._checkResponse);
@@ -90,11 +75,7 @@ class Api {
     deleteCard(id) {
         return fetch(`${this._url}/cards/${id}`, {
             method: "DELETE",
-            headers:  {
-                Accept: "application/json",
-                authorization: `Bearer ${localStorage.getItem("token")}`,
-                "Content-Type": "application/json",
-              },
+            headers: this._headers,
         })
             .then(this._checkResponse);
     }
@@ -105,21 +86,13 @@ class Api {
         if (isLiked) {
             return fetch(`${this._url}/cards/${id}/likes`, {
                 method: "DELETE",
-                headers:  {
-                    Accept: "application/json",
-                    authorization: `Bearer ${localStorage.getItem("token")}`,
-                    "Content-Type": "application/json",
-                  },
+                headers: this._headers,
             })
                 .then(this._checkResponse);
         } else {
             return fetch(`${this._url}/cards/${id}/likes`, {
                 method: "PUT",
-                headers:  {
-                    Accept: "application/json",
-                    authorization: `Bearer ${localStorage.getItem("token")}`,
-                    "Content-Type": "application/json",
-                  },
+                headers: this._headers,
             })
                 .then(this._checkResponse);
         }
@@ -130,7 +103,7 @@ class Api {
 export const api = new Api({
     url: 'https://mesto-backend.nomoredomains.rocks',
     headers: {
-       "Content-Type": "application/json",
-       "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
     },
-  });
+});

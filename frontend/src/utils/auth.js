@@ -61,8 +61,6 @@ class Auth {
   }
 }
 
-const auth = new Auth({
+export const auth = new Auth({
   url: 'https://mesto-backend.nomoredomains.rocks',
 });
-
-export default auth;
