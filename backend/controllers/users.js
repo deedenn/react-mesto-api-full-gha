@@ -166,7 +166,7 @@ const login = (req, res, next) => {
               expiresIn: '7d',
             },
           );
-          return res.send({ data: token });
+          return res.send({ token });
         });
     })
     .catch(next);

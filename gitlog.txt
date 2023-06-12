@@ -1,0 +1,161 @@
+[33mcommit 556182ee3d39cbb4cd5b28c329f31788e7d3977b[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Mon Jun 12 17:20:07 2023 +0300
+
+    Обновление токен
+
+[33mcommit 93649d0e23e092afd7ba2184fb63086746395abc[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Mon Jun 12 17:11:03 2023 +0300
+
+    Изменение _id в cards и users
+
+[33mcommit 6e813c06730a9ba924c4804aa16d53bc8f68cc96[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Mon Jun 12 16:39:00 2023 +0300
+
+    Добавлен SetToken в auth
+
+[33mcommit a6cee34ffcfbb3bd33aa628818a170e4c4a29de2[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Mon Jun 12 15:34:42 2023 +0300
+
+    Прописан token в headers api.js
+
+[33mcommit d912418516ea3b97fed176fdf04219df5be119a0[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Mon Jun 12 13:25:26 2023 +0300
+
+    Добавлен authorization в headers api.js
+
+[33mcommit 4780155c588fc3183d924dda0bf50d5b3ad4c01c[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Mon Jun 12 12:50:46 2023 +0300
+
+    Исправлен экспорт в auth.js
+
+[33mcommit cca7209cd955b2fd62be98047dbc9a650ce405bd[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Mon Jun 12 10:55:56 2023 +0300
+
+    Исправлен user_id
+
+[33mcommit 74c8389186242a984083158b11bc972bcb602a61[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Mon Jun 12 10:45:08 2023 +0300
+
+    Исправлен токен
+
+[33mcommit 916d02b261b1fd9e3dcfa589fe0b68c676553861[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Mon Jun 12 01:02:34 2023 +0300
+
+    Замена поля id (отмена)
+
+[33mcommit 21eeea9fdf903d334d60a46263ae94a474296d7f[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Mon Jun 12 00:59:16 2023 +0300
+
+    Исправлен _id в контроллерах бэкенда
+
+[33mcommit 7fbec392f57eda807742b8d01787bd25d08ed280[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Mon Jun 12 00:48:34 2023 +0300
+
+    Исправлен токен
+
+[33mcommit c088345f117e615d34c2133be6ec77f9eb9c7f2c[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Mon Jun 12 00:40:52 2023 +0300
+
+    Исправлен users.js (токен)
+
+[33mcommit be75c024307db6e478d4c001ed1a7be2e070d472[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Sun Jun 11 23:10:52 2023 +0300
+
+    Исправлен апи в фронтэнде
+
+[33mcommit bd28ddb493f79a8da770e237193d52d9ae2a33ea[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Sun Jun 11 23:03:32 2023 +0300
+
+    Билд фронтэнда
+
+[33mcommit da7764e833ff8d0491d10436321ab3b6a8358bee[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Sun Jun 11 11:17:35 2023 +0300
+
+    Исправлены ошибки
+
+[33mcommit 2ef6d49a3763d87840a9350ac26c291e55ae6b55[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Sat Jun 10 21:26:53 2023 +0300
+
+    Исправлены ошибки в backend
+
+[33mcommit 4f34afb9b84da6243a6348ff20e1b3786eeea129[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Sat Jun 10 21:09:19 2023 +0300
+
+    Добавлен .env
+
+[33mcommit 2b3e53e8431b73d0c88efcf1164a406ace377f69[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Sat Jun 10 20:33:12 2023 +0300
+
+    Добавлена связь фронтенда с бэкендом
+
+[33mcommit 2f788f2a1f9ed39866ca46675cc52fe1a807e286[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Fri Jun 9 19:32:31 2023 +0300
+
+    Создан билд, загружен на сервер
+
+[33mcommit a697c158d429123eb66f4c01b805cd2005d521d1[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Fri Jun 9 19:15:56 2023 +0300
+
+    Исправлена ошибка в Navbar.js
+
+[33mcommit 132a69acb753ed459389acc54f7ad9402d51d012[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Fri Jun 9 19:13:12 2023 +0300
+
+    Исправление ошибки в Navbar.js
+
+[33mcommit 9090a42ca63d0de42b9f88757a52b0b483e70d1e[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Fri Jun 9 18:53:18 2023 +0300
+
+    Добавлен краш тест
+
+[33mcommit 7979214154b151a805c7ee4616737bd8d179eeb1[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Fri Jun 9 18:17:49 2023 +0300
+
+    Добавлен cors
+
+[33mcommit 896218e531c7a01a2217000f633f318211e901b5[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Fri Jun 9 17:49:04 2023 +0300
+
+    Исправлен gitignore
+
+[33mcommit 85ad1161fbf3c21a0882beeb8528ef5ea99d427c[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Wed Jun 7 22:37:56 2023 +0300
+
+    ПР15: добавлен логгер
+
+[33mcommit 057e50678c25e96f5a75c3440630f4fe91315c2a[m
+Author: Denis Solovyev <solovyev.denis@gmail.com>
+Date:   Wed Jun 7 22:28:10 2023 +0300
+
+    ПР15: начало
+
+[33mcommit 71879716e4c4ac2cfec3fc7176dd136d2df30dd9[m
+Author: Denis Solovyev <71501622+deedenn@users.noreply.github.com>
+Date:   Sun Jun 4 23:33:52 2023 +0300
+
+    Initial commit
