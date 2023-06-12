@@ -100,13 +100,6 @@ export const api = new Api({
     headers: {
        "Content-Type": "application/json",
        "Accept": "application/json",
+       "Authorization": `Bearer ${token}`,
     },
   });
-
-// export const api = new Api({
-//     url: 'https://mesto.nomoreparties.co/v1/cohort-60',
-//     headers: {
-//         authorization: '088400de-a8be-47a0-9e64-a3f51543a3fa',
-//         'Content-Type': 'application/json'
-//     }
-// })
