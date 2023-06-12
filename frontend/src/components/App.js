@@ -35,9 +35,9 @@ function App() {
     isLoggedIn &&
       Promise.all([api.getUserInfo(), api.getInitialCards()])
         .then(([userData, initialCards]) => {
+          console.log(userData);
           setCurrentUser(userData);
           setCards(initialCards);
-          navigate("/", { replace: true });
         })
         .catch((err) => {
           console.error(`Ошибка: ${err}`);
@@ -83,11 +83,10 @@ function App() {
     auth
       .authorization({ email, password })
       .then((data) => {
-        if (data.token) {
-          localStorage.setItem('token', data.token);
+        if (data.token) localStorage.setItem("token", data.token);
+          api.setToken(data.token);
           handleLogin();
           navigate("/", { replace: true });
-        } 
       })
       .catch((err) => {
         handleShowInfoMessage({
@@ -182,9 +181,9 @@ function App() {
     const jwt = localStorage.getItem("token");
     if (jwt) {
       auth
-        .getContent()
+        .getContent(jwt)
         .then((res) => {
-          setEmail(res.email);
+          setEmail(res.data.email);
           navigate("/", { replace: true });
           handleLogin();
         })

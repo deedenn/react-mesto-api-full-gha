@@ -10,7 +10,9 @@ const ConflictError = require('../errors/conflict');
 
 const getUsers = (req, res, next) => {
   User.find({})
-    .then((users) => res.status(200).send({ data: users }))
+    .then((users) => {
+      res.send({ users });
+    })
     .catch((err) => {
       next(err);
     });
@@ -24,12 +26,12 @@ const getUser = (req, res, next) => {
       if (!user) {
         throw new NotFoundError('Пользователь не найден');
       } else {
-        res.status(200).send(user);
+        res.send({ data: user });
       }
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new BadRequestError('Введен некорректный id'));
+        next(new BadRequestError('Введен некорректный ID'));
         return;
       }
       next(err);
@@ -40,25 +42,28 @@ const getInfoUser = (req, res, next) => {
   User.findById({ _id: req.user._id })
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('Пользователь не найден.');
+        throw new NotFoundError('Пользователь не найден');
       } else {
-        res.status(200).send(user);
+        res.send({ data: user });
       }
     })
     .catch((err) => {
+      if (err.name === 'CastError') {
+        next(new BadRequestError('Пользователя c таким ID не существует'));
+        return;
+      }
       next(err);
     });
 };
 
 const createUser = (req, res, next) => {
   const {
-    name, about, avatar, email,
+    name, about, avatar, email, password,
   } = req.body;
-
   bcrypt
-    .hash(req.body.password, 5)
+    .hash(password, 10)
     .then((hash) => User.create({
-      email, password: hash, name, about, avatar,
+      name, about, avatar, email, password: hash,
     }))
     .then((newUser) => {
       res.status(200).send({
@@ -71,7 +76,7 @@ const createUser = (req, res, next) => {
     .catch((err) => {
       if (err.code === 11000) {
         next(
-          new ConflictError('Пользователь с таким email уже зарегистрирован'),
+          new ConflictError('Пользователь c таким email уже зарегистрирован'),
         );
       } else if (err.name === 'ValidationError') {
         next(
@@ -99,18 +104,14 @@ const updateUser = (req, res, next) => {
   )
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('Пользователь c указанным id не найден');
+        throw new NotFoundError('Пользователь c указанным ID не найден');
       } else {
-        res.send(user);
+        res.send({ data: user });
       }
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(
-          new BadRequestError(
-            'Переданы некорректные данные при обновлении профиля',
-          ),
-        );
+        next(new BadRequestError('Переданы некорректные данные при обновлении профиля'));
         return;
       }
       next(err);
@@ -131,18 +132,14 @@ const updateAvatar = (req, res, next) => {
   )
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('Пользователь c указанным id не найден');
+        throw new NotFoundError('Пользователь c указанным ID не найден');
       } else {
-        res.send(user);
+        res.send({ data: user });
       }
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(
-          new BadRequestError(
-            'Переданы некорректные данные при обновлении аватара',
-          ),
-        );
+        next(new BadRequestError('Переданы некорректные данные при обновлении профиля'));
         return;
       }
       next(err);
@@ -152,30 +149,27 @@ const updateAvatar = (req, res, next) => {
 const login = (req, res, next) => {
   const { email, password } = req.body;
 
-  User.findOne({ email })
-    .select('+password')
+  User.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
         throw new UnauthorizedError('Неправильная почта или пароль');
       }
-      return bcrypt.compare(password, user.password).then((matched) => {
-        if (!matched) {
-          throw new UnauthorizedError('Неправильная почта или пароль');
-        }
-
-        const token = jwt.sign(
-          { _id: user._id },
-          NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key',
-          {
-            expiresIn: '7d',
-          },
-        );
-        res.status(200).send({ token });
-      });
+      return bcrypt.compare(password, user.password)
+        .then((matched) => {
+          if (!matched) {
+            return next(new UnauthorizedError('Неправильная почта или пароль'));
+          }
+          const token = jwt.sign(
+            { _id: user._id },
+            NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key',
+            {
+              expiresIn: '7d',
+            },
+          );
+          return res.send({ token });
+        });
     })
-    .catch((err) => {
-      next(err);
-    });
+    .catch(next);
 };
 
 module.exports = {

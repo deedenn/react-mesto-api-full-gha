@@ -44,12 +44,13 @@ class Auth {
     });
   }
 
-  getContent() {
+  getContent(token) {
     return fetch(`${this._url}/users/me`, {
       method: "GET",
       headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
-        authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     })
       .then((response) => {
@@ -61,5 +62,9 @@ class Auth {
 }
 
 export const auth = new Auth({
-  url: 'https://mesto-backend.nomoredomains.rocks',
+  url: 'http://localhost:3000',
 });
+
+// export const auth = new Auth({
+//   url: 'https://mesto-backend.nomoredomains.rocks',
+// });

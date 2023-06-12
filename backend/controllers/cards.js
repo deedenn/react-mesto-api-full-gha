@@ -5,7 +5,6 @@ const ForbiddenError = require('../errors/forbidden');
 
 const getCards = (req, res, next) => {
   Card.find({})
-    .populate(['owner', 'likes'])
     .then((cards) => {
       res.send(cards);
     })
@@ -60,17 +59,16 @@ const likeCard = (req, res, next) => {
     { $addToSet: { likes: owner } },
     { new: true },
   )
-    .populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
-        throw new NotFoundError('Передан несуществующий id карточки');
+        throw new NotFoundError('Передан несуществующий ID карточки');
       } else {
         res.send(card);
       }
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new BadRequestError('Введен некорректный id'));
+        next(new BadRequestError('Введен некорректный ID'));
         return;
       }
       next(err);
@@ -86,17 +84,16 @@ const dislikeCard = (req, res, next) => {
     { $pull: { likes: owner } },
     { new: true },
   )
-    .populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
-        throw new NotFoundError('Передан несуществующий id карточки');
+        throw new NotFoundError('Передан несуществующий ID карточки');
       } else {
         res.send(card);
       }
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new BadRequestError('Введен некорректный id'));
+        next(new BadRequestError('Введен некорректный ID'));
         return;
       }
       next(err);
