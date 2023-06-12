@@ -61,10 +61,10 @@ class Auth {
   }
 }
 
-export const auth = new Auth({
-  url: 'http://localhost:3000',
-});
-
 // export const auth = new Auth({
-//   url: 'https://mesto-backend.nomoredomains.rocks',
+//   url: 'http://localhost:3000',
 // });
+
+export const auth = new Auth({
+  url: 'https://mesto-backend.nomoredomains.rocks',
+});
