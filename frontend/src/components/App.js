@@ -37,6 +37,7 @@ function App() {
         .then(([userData, initialCards]) => {
           setCurrentUser(userData);
           setCards(initialCards);
+          navigate("/", { replace: true });
         })
         .catch((err) => {
           console.error(`Ошибка: ${err}`);
@@ -82,9 +83,11 @@ function App() {
     auth
       .authorization({ email, password })
       .then((data) => {
-        if (data.token) localStorage.setItem("token", data.token);
-        handleLogin();
-        navigate("/", { replace: true });
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          handleLogin();
+          navigate("/", { replace: true });
+        } 
       })
       .catch((err) => {
         handleShowInfoMessage({
@@ -179,9 +182,9 @@ function App() {
     const jwt = localStorage.getItem("token");
     if (jwt) {
       auth
-        .getContent(jwt)
+        .getContent()
         .then((res) => {
-          setEmail(res.data.email);
+          setEmail(res.email);
           navigate("/", { replace: true });
           handleLogin();
         })

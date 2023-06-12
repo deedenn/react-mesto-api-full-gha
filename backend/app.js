@@ -9,11 +9,8 @@ const cors = require('cors');
 
 const app = express();
 
-app.use(cors());
-
 const signRouter = require('./routes/sign');
-const usersRouter = require('./routes/users');
-const cardsRouter = require('./routes/cards');
+const router = require('./routes');
 const { auth } = require('./middlewares/auth');
 const NotFoundError = require('./errors/notfound');
 const { centralError } = require('./middlewares/centralError');
@@ -31,6 +28,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
+app.use(cors());
+
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер падает');
@@ -40,8 +39,7 @@ app.get('/crash-test', () => {
 app.use(signRouter);
 app.use(auth);
 
-app.use('/users', usersRouter);
-app.use('/cards', cardsRouter);
+app.use(Router);
 
 app.use('*', (req, res, next) => {
   next(new NotFoundError('Страница не найдена'));

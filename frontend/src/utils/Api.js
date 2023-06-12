@@ -8,7 +8,6 @@ class Api {
         if (response.ok) {
             return response.json();
         } else {
-            console.log('Ошибка');
             return Promise.reject(`Ошибка: ${response.status}`);
         }
     }
@@ -98,10 +97,10 @@ class Api {
 export const api = new Api({
     url: 'https://mesto-backend.nomoredomains.rocks',
     headers: {
-       "Content-Type": "application/json",
-       "Accept": "application/json",
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem('token')}`,
     },
-  });
+});
 
 // export const api = new Api({
 //     url: 'https://mesto.nomoreparties.co/v1/cohort-60',
