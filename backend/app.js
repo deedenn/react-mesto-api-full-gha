@@ -9,7 +9,7 @@ const cors = require('./middlewares/cors');
 
 const app = express();
 
-app.use(cors());
+app.use(cors);
 
 const signRouter = require('./routes/sign');
 const usersRouter = require('./routes/users');
