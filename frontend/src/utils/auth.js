@@ -65,8 +65,4 @@ const auth = new Auth({
   url: 'https://mesto-backend.nomoredomains.rocks',
 });
 
-// export const auth = new Auth({
-//   url: "https://auth.nomoreparties.co",
-// });
-
 export default auth;
