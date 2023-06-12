@@ -4,9 +4,11 @@ class Api {
         this._headers = headers;
     }
 
-    setToken() {
-        this._token = localStorage.getItem('token');
-        this._headers.authorization = `Bearer ${this._token}`;
+    setToken(token) {
+        this._headers = {
+            'Content-Type': 'application/json',
+            'authorization': token,
+          }
     }
 
     _checkResponse(response) {
