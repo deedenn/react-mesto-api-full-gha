@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP 51.250.88.158
+IP 158.160.109.243
 
 Frontend https://mesto-express.nomoredomains.rocks
 
