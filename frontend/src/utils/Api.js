@@ -22,10 +22,11 @@ class Api {
 
     // получение информации о пользователе
     getUserInfo() {
+        const token = localStorage.getItem("token");
         return fetch(`${this._url}/users/me`, {
             headers: {
                 "Content-Type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("token")}`,
+                "authorization": `Bearer ${token}`,
               },
         })
             .then(this._checkResponse);
@@ -34,10 +35,11 @@ class Api {
     // загрузка всех карточек
 
     getInitialCards() {
+        const token = localStorage.getItem("token");
         return fetch(`${this._url}/cards`, {
             headers: {
                 "Content-Type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("token")}`,
+                "authorization": `Bearer ${token}`,
               },
         })
             .then(this._checkResponse);
@@ -45,11 +47,12 @@ class Api {
 
     // редактирование профиля
     editProfileInfo(data) {
+        const token = localStorage.getItem("token");
         return fetch(`${this._url}/users/me`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("token")}`,
+                "authorization": `Bearer ${token}`,
               },
             body: JSON.stringify({
                 name: data.name,
@@ -62,11 +65,12 @@ class Api {
     // поменять аватар
 
     changeAvatar(data) {
+        const token = localStorage.getItem("token");
         return fetch(`${this._url}/users/me/avatar`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("token")}`,
+                "authorization": `Bearer ${token}`,
               },
             body: JSON.stringify(data)
         })
@@ -76,11 +80,12 @@ class Api {
     // добавление новой карточки
 
     addNewCard(data) {
+        const token = localStorage.getItem("token");
         return fetch(`${this._url}/cards`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("token")}`,
+                "authorization": `Bearer ${token}`,
               },
             body: JSON.stringify(data)
         })
@@ -90,11 +95,12 @@ class Api {
     // удаление созданной карточки
 
     deleteCard(id) {
+        const token = localStorage.getItem("token");
         return fetch(`${this._url}/cards/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("token")}`,
+                "authorization": `Bearer ${token}`,
               },
         })
             .then(this._checkResponse);
@@ -103,12 +109,13 @@ class Api {
     // изменить лайк
 
     changeLikeCard(id, isLiked) {
+        const token = localStorage.getItem("token");
         if (isLiked) {
             return fetch(`${this._url}/cards/${id}/likes`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    authorization: `Bearer ${localStorage.getItem("token")}`,
+                    "authorization": `Bearer ${token}`,
                   },
             })
                 .then(this._checkResponse);
@@ -117,7 +124,7 @@ class Api {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    authorization: `Bearer ${localStorage.getItem("token")}`,
+                    "authorization": `Bearer ${token}`,
                   },
             })
                 .then(this._checkResponse);
