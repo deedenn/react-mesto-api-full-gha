@@ -5,15 +5,14 @@ require('dotenv').config();
 
 const { PORT = 3000 } = process.env;
 const { errors } = require('celebrate');
-const cors = require('./middlewares/cors');
+const cors = require('cors');
 
 const app = express();
 
-app.use(cors);
+app.use(cors());
 
+const router = require('./routes');
 const signRouter = require('./routes/sign');
-const usersRouter = require('./routes/users');
-const cardsRouter = require('./routes/cards');
 const { auth } = require('./middlewares/auth');
 const NotFoundError = require('./errors/notfound');
 const { centralError } = require('./middlewares/centralError');
@@ -40,8 +39,7 @@ app.get('/crash-test', () => {
 app.use(signRouter);
 app.use(auth);
 
-app.use('/users', usersRouter);
-app.use('/cards', cardsRouter);
+app.use(router);
 
 app.use('*', (req, res, next) => {
   next(new NotFoundError('Страница не найдена'));
