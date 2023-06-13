@@ -35,8 +35,7 @@ function App() {
     isLoggedIn &&
       Promise.all([api.getUserInfo(), api.getInitialCards()])
         .then(([userData, initialCards]) => {
-          console.log(userData);
-          setCurrentUser(userData);
+          setCurrentUser(userData.data);
           setCards(initialCards);
         })
         .catch((err) => {
@@ -83,10 +82,13 @@ function App() {
     auth
       .authorization({ email, password })
       .then((data) => {
-        if (data.token) localStorage.setItem("token", data.token);
+        if (data.token) 
+        {
+          localStorage.setItem("token", data.token);
           api.setToken(data.token);
           handleLogin();
           navigate("/", { replace: true });
+        }
       })
       .catch((err) => {
         handleShowInfoMessage({
@@ -97,7 +99,7 @@ function App() {
   };
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     api
       .changeLikeCard(card._id, isLiked)
       .then((newCard) => {
@@ -123,7 +125,7 @@ function App() {
     api
       .editProfileInfo(userData)
       .then((data) => {
-        setCurrentUser(data);
+        setCurrentUser(data.data);
         closeAllPopups();
       })
       .catch((err) => {
@@ -135,7 +137,7 @@ function App() {
     api
       .changeAvatar(userData)
       .then((userData) => {
-        setCurrentUser(userData);
+        setCurrentUser(userData.data);
         closeAllPopups();
       })
       .catch((err) => {

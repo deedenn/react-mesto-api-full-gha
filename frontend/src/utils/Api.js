@@ -133,15 +133,6 @@ class Api {
 
 }
 
-
-// export const api = new Api({
-//     url: 'http://localhost:3000',
-//     headers: {
-//         "Content-Type": "application/json",
-//         "Accept": "application/json",
-//     },
-// });
-
 export const api = new Api({
     url: 'https://mesto-backend.nomoredomains.rocks',
     headers: {
